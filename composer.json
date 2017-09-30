@@ -9,10 +9,9 @@
             "email": "gawain.lynch@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "bolt/bolt": "3.4.x-dev@dev",
+        "bolt/bolt": "^3.4@beta",
         "bolt/collection": "^1.1",
         "bolt/filesystem": "^2.4",
         "league/flysystem-sftp": "^1.0",
