@@ -232,7 +232,7 @@ final class Deployer
             ->notName('deploy.yml')
             ->notName('*_local.yml')
             ->notName('*.yml.dist')
-            ->exclude(['node_modules', 'bower_components', '.sass-cache', 'Test', 'test', 'Tests', 'tests', 'tmp', 'fixtures'])
+            ->exclude(['node_modules', 'bower_components', '.sass-cache', 'test', 'Tests', 'tests', 'tmp', 'fixtures'])
             ->ignoreDotFiles()
             ->ignoreVCS()
         ;
