@@ -83,6 +83,14 @@ final class SetupDeploy extends BaseCommand
             return $result;
         }
 
+        // Password check
+        if ($targetConfig->getOptions()->get('password') === null) {
+            $this->io->note('No password supplied');
+            $userName = $targetConfig->getOptions()->get('username') . '@' . $targetConfig->getOptions()->get('host');
+            $password = $this->io->askHiddenThenRemove('Enter password for ' . $userName);
+            $targetConfig->getOptions()->set('password', $password);
+        }
+
         // Connection check
         if ($deployment->checkConnection($targetConfig) === false) {
             return 1;
