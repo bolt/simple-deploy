@@ -84,7 +84,7 @@ staging:
 | host         | DNS host name to upload to
 | root         | The root directory of the remote site. Can be an absolute path, or if missing a trailing `/` it will be assumed to be a subdirectory of the remote user's home directory
 | username     | User name to login to the remote host with
-| password     | Password to login to the remote host with
+| password     | (optional) Password to login to the remote host with
 | port         | (optional) Port number to connect to if the target is not listening on the default
 | ssl          | (optional) Connect to the FTP target host over a secure SSL-FTP connection
 | timeout      | (optional) Time in seconds to wait for a connection attempt
