@@ -273,6 +273,7 @@ final class Deployer
         $progressBar->start($sync->count());
         $connection = $this->getAdapter($targetConfig)->getConnection();
         $directoryPerm = $targetConfig->getOptions()->get('directoryPerm');
+        $isFtp = $targetConfig->getProtocol() === 'ftp';
 
         /** @var HandlerInterface $include */
         foreach ($sync as $include) {
@@ -294,7 +295,15 @@ final class Deployer
                 }
                 if ($force) {
                     list($mountPoint, $path) = $this->getEntreePath($targetPath);
-                    $connection->chmod($directoryPerm, $path);
+                    if ($isFtp) {
+                        if (ftp_chmod($connection, $directoryPerm, $path) === false) {
+                            $errorMessage = sprintf('Failed to set permissions on remote directory %s', $path);
+                            $this->io->error($errorMessage);
+                            throw new IOException($errorMessage);
+                        }
+                    } else {
+                        $connection->chmod($directoryPerm, $path);
+                    }
                 }
 
                 continue;
